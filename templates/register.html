@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+        color: #fff;
+    }
+    .card {
+        background: #0e1726;
+        border: 1px solid rgba(0, 153, 255, 0.2);
+        box-shadow: 0 0 20px rgba(0, 153, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: 0.3s;
+    }
+    .card:hover {
+        box-shadow: 0 0 25px rgba(0, 153, 255, 0.3);
+    }
+    .form-control {
+        background-color: #1f2a38;
+        border: 1px solid #3e4b5b;
+        color: #fff;
+    }
+    .form-control:focus {
+        border-color: #00c3ff;
+        box-shadow: 0 0 5px #00c3ff;
+    }
+    .btn-cyber {
+        background: #00c3ff;
+        color: #fff;
+        font-weight: bold;
+        box-shadow: 0 0 10px #00c3ff;
+        transition: 0.3s ease-in-out;
+    }
+    .btn-cyber:hover {
+        background: #009acd;
+        box-shadow: 0 0 15px #00c3ff, 0 0 20px #00c3ff;
+    }
+    .input-group-text {
+        background: #1f2a38;
+        border: 1px solid #3e4b5b;
+        color: #00c3ff;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="text-center mb-5" data-aos="fade-down">
+        <h4 class="text-info">Welcome to StegoEncrypt</h4>
+        <h1 class="fw-bold text-white">Create <span style="color:#00c3ff;">Account</span></h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card" data-aos="zoom-in">
+                <form method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="username" class="form-label text-info"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label text-info"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label text-info"><i class="fas fa-lock"></i> Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Enter password" required>
+                            <span class="input-group-text toggle-password" data-toggle="#password">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-cyber btn-lg mt-2">Create Account</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <small class="text-light">Already have an account?
+                        <a href="{% url 'login' %}" class="text-info">Log in</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Password Toggle Script -->
+<script>
+    document.querySelectorAll('.toggle-password').forEach(function (el) {
+        el.addEventListener('click', function () {
+            const targetInput = document.querySelector(this.getAttribute('data-toggle'));
+            const type = targetInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            targetInput.setAttribute('type', type);
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+<!-- Show Django messages as alerts -->
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            alert("{{ message|escapejs }}");
+        </script>
+    {% endfor %}
+{% endif %}
+{% endblock %}

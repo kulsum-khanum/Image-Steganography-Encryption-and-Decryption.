@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile | StegoEncrypt</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <h1 class="logo">StegoEncrypt</h1>
+            <div class="nav-links">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="{% url 'encode' %}">Encode</a>
+                <a href="{% url 'decode' %}">Decode</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Profile Section -->
+    <main class="container profile-container">
+        <h2>Welcome, {{ user.username }}</h2>
+        <p>This is your personal dashboard to manage activities and settings.</p>
+
+        <div class="features-grid">
+            <div class="card">
+                <h3>Image History</h3>
+                <p>View images you've encoded or decoded.</p>
+                <a href="{% url 'history' %}" class="btn">View History</a>
+            </div>
+
+            <div class="card">
+                <h3>Account Settings</h3>
+                <p>Update profile info or change your password.</p>
+                <a href="{% url 'account_settings' %}" class="btn">Manage Settings</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2025 StegoEncrypt. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

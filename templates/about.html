@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% block title %}About | StegoEncrypt{% endblock %}
+
+{% block content %}
+<!-- About Section with Icon Cards -->
+<section class="about-section text-center" data-aos="fade-up">
+  <h1 class="vibrant-heading">
+    <i class="fas fa-user-shield cyber-icon icon-glow-pulse"></i>About StegoEncrypt
+  </h1>
+  <p>
+    StegoEncrypt is an advanced web app that hides messages inside images using modern encryption and steganography techniques.
+  </p>
+  <p>
+    Designed for secure communication, education, and cybersecurity demonstrations. Built as part of a real-world internship.
+  </p>
+
+  <div class="features">
+    <div class="feature-box" onclick="popEffect(this)">
+      <i class="fas fa-lock icon-animated"></i>
+      <div class="feature-title">Secure Encryption</div>
+      <div class="feature-desc">Protect data with robust encryption standards.</div>
+    </div>
+    <div class="feature-box" onclick="popEffect(this)">
+      <i class="fas fa-image icon-animated"></i>
+      <div class="feature-title">Image Steganography</div>
+      <div class="feature-desc">Hide data inside images with precision and stealth.</div>
+    </div>
+    <div class="feature-box" onclick="popEffect(this)">
+      <i class="fas fa-graduation-cap icon-animated"></i>
+      <div class="feature-title">Educational Tool</div>
+      <div class="feature-desc">Perfect for demos, learning, and cybersecurity projects.</div>
+    </div>
+    <div class="feature-box" onclick="popEffect(this)">
+      <i class="fas fa-shield-alt icon-animated"></i>
+      <div class="feature-title">Cybersecurity Focus</div>
+      <div class="feature-desc">Built for privacy and security-aware users.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AOS + Custom Scripts -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+
+  function popEffect(el) {
+    el.classList.add("active");
+    setTimeout(() => el.classList.remove("active"), 400);
+  }
+</script>
+
+<!-- CSS -->
+<style>
+  .about-section {
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: #e2e8f0;
+    padding: 60px 20px;
+  }
+
+  .vibrant-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cyber-icon {
+    font-size: 2.5rem;
+    margin-right: 12px;
+    animation: bounceGlow 2s infinite ease-in-out;
+  }
+
+  @keyframes bounceGlow {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      text-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+    }
+    50% {
+      transform: translateY(-6px) scale(1.1);
+      text-shadow: 0 0 15px #3b82f6, 0 0 25px #3b82f6;
+    }
+  }
+
+  .features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 50px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature-box {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 30px 20px;
+    width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(96, 165, 250, 0.5);
+  }
+
+  .feature-box.active {
+    animation: pop 0.4s ease;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .feature-box i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+    color: #60a5fa;
+  }
+
+  .feature-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #f1f5f9;
+  }
+
+  .feature-desc {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, #3b82f6, #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .icon-animated {
+    transition: transform 0.3s, color 0.3s;
+    animation: pulse 2s infinite;
+  }
+
+  .feature-box:hover .icon-animated {
+    transform: scale(1.1);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+</style>
+{% endblock %}

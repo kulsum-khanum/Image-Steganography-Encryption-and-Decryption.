@@ -1,0 +1,11 @@
+# Python temporary files
+__pycache__/
+*.py[cod]
+
+# Secrets and environment variables
+.env
+
+# Database and media files
+db.sqlite3
+media/
+staticfiles/

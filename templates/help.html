@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Help | StegoEncrypt{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        font-family: 'Poppins', sans-serif;
+        color: #e2e8f0;
+    }
+
+    .help-container {
+        max-width: 750px;
+        margin: 60px auto;
+        padding: 40px;
+        background: rgba(30, 41, 59, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+        backdrop-filter: blur(10px);
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .help-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #60a5fa;
+        text-align: center;
+        margin-bottom: 25px;
+        text-shadow: 0 0 8px #3b82f6;
+    }
+
+    .help-container p, .help-container li {
+        color: #cbd5e1;
+        line-height: 1.6;
+    }
+
+    .help-container a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
+
+    .help-container a:hover {
+        text-decoration: underline;
+    }
+
+    .btn-back {
+        background-color: transparent;
+        border: 2px solid #60a5fa;
+        color: #60a5fa;
+        border-radius: 30px;
+        padding: 10px 25px;
+        font-weight: 600;
+        transition: 0.3s ease;
+        box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+    }
+
+    .btn-back:hover {
+        background-color: #2563eb;
+        color: white;
+        box-shadow: 0 0 12px #3b82f6;
+    }
+</style>
+
+<div class="help-container">
+    <h2 class="help-title">❓ Help & Support</h2>
+    <p>If you need assistance using <strong>StegoEncrypt</strong>, here are some ways to get help:</p>
+    <ul>
+        <li>Email our support team: <a href="mailto:support@stegoencrypt.com">support@stegoencrypt.com</a></li>
+        <li>Visit our FAQ page <em>(coming soon)</em></li>
+        <li>Check out our GitHub repository or project documentation <em>(if available)</em></li>
+    </ul>
+    <p class="mt-3">We're committed to helping you with image encryption, decryption, and steganography.</p>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn-back">← Back to Home</a>
+    </div>
+</div>
+{% endblock %}

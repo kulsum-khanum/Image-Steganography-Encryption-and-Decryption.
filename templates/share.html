@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Share Encrypted Image | StegoEncrypt{% endblock %}
+
+{% block content %}
+<!-- Lottie Player Script -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<style>
+  body {
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: #e2e8f0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .share-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 30px;
+    background: rgba(30, 41, 59, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(96, 165, 250, 0.25);
+    gap: 30px;
+  }
+
+  .image-block, .form-block, .ai-block {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .image-block img {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid #334155;
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+
+  .btn {
+    border-radius: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .btn-email {
+    background-color: #3b82f6;
+    color: white;
+  }
+
+  .btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+  }
+
+  .btn-copy {
+    background-color: #64748b;
+    color: white;
+  }
+
+  #copyMessage {
+    font-size: 14px;
+    color: #22c55e;
+    margin-top: 5px;
+  }
+
+  .ai-block lottie-player {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+  }
+
+  @media (max-width: 768px) {
+    .share-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<div class="share-container">
+
+  <div class="form-block">
+    <h2 style="color:#60a5fa;">🔐 Share Your Encrypted Image</h2>
+
+    <form method="POST" action="{% url 'send_encrypted_email' %}">
+      {% csrf_token %}
+      <input type="hidden" name="image_url" value="{{ image_url|cut:'/media/' }}">
+      <input type="email" name="recipient" class="form-control" placeholder="Enter recipient's email" required>
+      <button type="submit" class="btn btn-email">📧 Send via Email</button>
+    </form>
+
+    <a href="https://wa.me/?text=Here%20is%20an%20encrypted%20image:%20{{ full_url }}" 
+       target="_blank" class="btn btn-whatsapp">📤 Share via WhatsApp</a>
+
+    <button onclick="copyToClipboard()" class="btn btn-copy">📋 Copy Link</button>
+    <p id="copyMessage" style="display:none;">✅ Link copied!</p>
+  </div>
+
+
+ <div class="image-block">
+  <img src="{{ image_url }}" alt="Encrypted Image">
+  
+  <p style="margin-top: 10px;">
+    <a href="{{ image_url }}" download class="btn btn-copy">⬇️ Download Image</a>
+  </p>
+</div>
+
+
+  <div class="ai-block">
+    <!-- Working AI Cyber Assistant Animation -->
+    <!-- AI Cyber Assistant Animation -->
+<lottie-player
+    src="https://assets1.lottiefiles.com/packages/lf20_3vbOcw.json"
+    background="transparent"
+    speed="1"
+    loop
+    autoplay
+    style="width: 300px; height: 300px; margin: auto;">
+</lottie-player>
+
+  </div>
+
+</div>
+
+<script>
+  function copyToClipboard() {
+    const tempInput = document.createElement("input");
+    tempInput.value = "{{ full_url }}";
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    document.getElementById("copyMessage").style.display = "block";
+  }
+</script>
+{% endblock %}

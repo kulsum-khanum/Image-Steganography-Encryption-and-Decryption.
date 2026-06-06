@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+        font-family: 'Poppins', sans-serif;
+        color: #e2e8f0;
+    }
+
+    .form-container {
+        max-width: 700px;
+        background-color: #1e293b;
+        padding: 40px;
+        border-radius: 16px;
+        margin: auto;
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+    }
+
+    .form-label {
+        color: #cbd5e1;
+        font-weight: 500;
+    }
+
+    .form-control {
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        color: #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .form-control::placeholder {
+        color: #94a3b8;
+    }
+
+    .btn-custom {
+        background-color: #60a5fa;
+        color: #0f172a;
+        font-weight: 600;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        background-color: #3b82f6;
+        box-shadow: 0 0 12px #60a5fa;
+    }
+
+    .alert {
+        border-radius: 12px;
+    }
+
+    h2 {
+        color: #60a5fa;
+        font-weight: 700;
+        text-align: center;
+        text-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
+        margin-bottom: 30px;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="form-container">
+        <h2>🕵️‍♂️ Decrypt Hidden Message</h2>
+
+        {% if message %}
+            <div class="alert alert-info text-center">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Encrypted Image:</label>
+                <input type="file" name="image" id="image" accept="image/*" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="key" class="form-label">Enter Decryption Key:</label>
+                <input type="password" name="key" id="key" placeholder="Enter Key" class="form-control" required autocomplete="new-password">
+            </div>
+
+            <button type="submit" class="btn btn-custom w-100">🔓 Decrypt</button>
+        </form>
+
+        {% if hidden_message %}
+            <div class="alert alert-success mt-4 text-center">
+                <h5>✅ Decrypted Message:</h5>
+                <p>{{ hidden_message }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

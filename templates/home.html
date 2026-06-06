@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | StegoEncrypt{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    font-family: 'Poppins', sans-serif;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  .home-section {
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .home-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #60a5fa;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+    animation: fadeInDown 1s ease-in-out;
+  }
+
+  .home-subtitle {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.6;
+    animation: fadeInUp 1.2s ease-in-out;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .action-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+  }
+
+  .action-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(96, 165, 250, 0.2);
+  }
+
+  .action-icon {
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px #60a5fa;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #e2e8f0;
+  }
+
+  .card-text {
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+  .btn-custom {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 2px solid #60a5fa;
+    color: #60a5fa;
+    background: transparent;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-custom:hover {
+    background: #60a5fa;
+    color: #0f172a;
+    box-shadow: 0 0 12px #60a5fa;
+  }
+
+  /* Animations */
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+</style>
+
+<!-- Load Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="home-section">
+  <h1 class="home-heading">🔐 Welcome to StegoEncrypt</h1>
+  <p class="home-subtitle">
+    Empower your communication with cybersecurity-grade steganography. Securely hide and extract messages in images using modern encryption.
+  </p>
+
+  <div class="card-container">
+    <!-- Encrypt Card -->
+    <div class="action-card">
+      <i class="fas fa-shield-alt action-icon"></i>
+      <div class="card-title">Encrypt / Encode</div>
+      <div class="card-text">Hide a secret message inside an image file with one click.</div>
+      <a href="{% url 'encrypt' %}" class="btn-custom">Go to Encode</a>
+    </div>
+
+    <!-- Decrypt Card -->
+    <div class="action-card">
+      <i class="fas fa-search action-icon"></i>
+      <div class="card-title">Decrypt / Decode</div>
+      <div class="card-text">Upload a stego image and reveal the hidden message securely.</div>
+      <a href="{% url 'decrypt' %}" class="btn-custom">Go to Decode</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
